@@ -67,7 +67,7 @@
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchFloat32>true</MtouchFloat32>
-    <CodesignKey>iPhone Distribution: Guanglei Dai (GCG9VGW2C4)</CodesignKey>
+    <CodesignKey>iPhone Developer: Guanglei Dai (FL25U4P6TX)</CodesignKey>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchUseSGen>true</MtouchUseSGen>
@@ -75,6 +75,7 @@
     <MtouchProfiling>true</MtouchProfiling>
     <IpaPackageName>
     </IpaPackageName>
+    <CodesignProvision>01889930-72ae-4b4e-b26f-8c6961c6957f</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

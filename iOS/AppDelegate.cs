@@ -22,19 +22,47 @@ namespace PushKitExample.iOS
 
       RegisterVoip();
 
+      if (UIDevice.CurrentDevice.CheckSystemVersion (8, 0)) {
+        var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes (
+          UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null
+        );
+
+        app.RegisterUserNotificationSettings (notificationSettings);
+      } 
+
       return base.FinishedLaunching (app, options);
     }
 
     public void DidUpdatePushCredentials (PKPushRegistry registry, PKPushCredentials credentials, string type)
     {
       if(credentials != null && credentials.Token != null) {
-        token = credentials.Token.ToString();
+        var fullToken = credentials.Token.ToString();
+        token = fullToken.Trim ('<').Trim ('>').Replace(" ", string.Empty);
+        Console.WriteLine("Token is " + token);
       }
     }
 
     public void DidReceiveIncomingPush (PKPushRegistry registry, PKPushPayload payload, string type)
     {
-      var ppp = payload;
+      Console.WriteLine("My push is coming!");
+
+      UILocalNotification notification = new UILocalNotification();
+      notification.FireDate = NSDate.Now;
+      notification.AlertBody = "This is local notification!";
+      notification.TimeZone = NSTimeZone.DefaultTimeZone;
+      notification.SoundName = UILocalNotification.DefaultSoundName;
+      notification.ApplicationIconBadgeNumber = 1;
+      UIApplication.SharedApplication.ScheduleLocalNotification(notification);
+    }
+
+    public override void ReceivedLocalNotification(UIApplication application, UILocalNotification notification)
+    {
+      // show an alert
+      UIAlertController okayAlertController = UIAlertController.Create (notification.AlertAction, notification.AlertBody, UIAlertControllerStyle.Alert);
+      okayAlertController.AddAction (UIAlertAction.Create ("OK", UIAlertActionStyle.Default, null));
+
+      // reset our badge
+      UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
     }
 
     void RegisterVoip ()
