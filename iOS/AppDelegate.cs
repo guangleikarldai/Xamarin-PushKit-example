@@ -45,14 +45,18 @@ namespace PushKitExample.iOS
     public void DidReceiveIncomingPush (PKPushRegistry registry, PKPushPayload payload, string type)
     {
       Console.WriteLine("My push is coming!");
+      var aps = payload.DictionaryPayload.ObjectForKey(new NSString("aps")) as NSDictionary;
+      NSString alertKey = new NSString("alert");
 
-      UILocalNotification notification = new UILocalNotification();
-      notification.FireDate = NSDate.Now;
-      notification.AlertBody = "This is local notification!";
-      notification.TimeZone = NSTimeZone.DefaultTimeZone;
-      notification.SoundName = UILocalNotification.DefaultSoundName;
-      notification.ApplicationIconBadgeNumber = 1;
-      UIApplication.SharedApplication.ScheduleLocalNotification(notification);
+      if(aps.ContainsKey(alertKey)) {
+        UILocalNotification notification = new UILocalNotification();
+        notification.FireDate = NSDate.Now;
+        notification.AlertBody = aps.ObjectForKey(alertKey) as NSString;
+        notification.TimeZone = NSTimeZone.DefaultTimeZone;
+        notification.SoundName = UILocalNotification.DefaultSoundName;
+        notification.ApplicationIconBadgeNumber = 1;
+        UIApplication.SharedApplication.ScheduleLocalNotification(notification);
+      }
     }
 
     public override void ReceivedLocalNotification(UIApplication application, UILocalNotification notification)
