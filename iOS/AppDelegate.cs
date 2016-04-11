@@ -28,7 +28,7 @@ namespace PushKitExample.iOS
     public void DidUpdatePushCredentials (PKPushRegistry registry, PKPushCredentials credentials, string type)
     {
       if(credentials != null && credentials.Token != null) {
-        token = credentials.Token.ToString;
+        token = credentials.Token.ToString();
       }
     }
 

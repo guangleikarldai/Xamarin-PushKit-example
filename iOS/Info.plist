@@ -4,8 +4,6 @@
 <dict>
 	<key>CFBundleDisplayName</key>
 	<string>PushKitExample</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.guanglei.pushkit.pushkitexample</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -13,7 +11,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>7.0</string>
+	<string>8.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -44,5 +42,7 @@
 	<array>
 		<string>voip</string>
 	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.guanglei.pushkit.pushkitexample</string>
 </dict>
 </plist>
