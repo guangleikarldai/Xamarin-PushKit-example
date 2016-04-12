@@ -7,6 +7,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Gms.Common;
 
 namespace PushKitExample.Droid
 {
@@ -18,6 +19,9 @@ namespace PushKitExample.Droid
       base.OnCreate (bundle);
 
       global::Xamarin.Forms.Forms.Init (this, bundle);
+
+      var intent = new Intent (Android.App.Application.Context, typeof(RegistrationIntentService));
+      Android.App.Application.Context.StartService (intent);
 
       LoadApplication (new App ());
     }
