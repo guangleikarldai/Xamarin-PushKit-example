@@ -28,7 +28,7 @@ namespace PushKitExample.Droid
 
       NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder (this)
         .SetSmallIcon (Resource.Drawable.icon)
-        .SetContentTitle ("NVM New Message Downloaded")
+        .SetContentTitle ("New notification!")
         .SetContentText (String.Format ("Your have {0} new messages Downloaded", 1))
         .SetAutoCancel (true)
         .SetContentIntent (pendingIntent);
